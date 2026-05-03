@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Nini ❤️</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',cursive,sans-serif}
+    body{
+      min-height:100vh;
+      background:linear-gradient(135deg,#ffe1ec,#fff4f8,#ffe8d6);
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden;color:#4b1d2b;
+    }
+    .flowers,.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+    .petal,.heart{
+      position:absolute;top:-40px;animation:fall linear infinite;opacity:.8;
+      font-size:24px;
+    }
+    .heart{color:#ff4f87;animation-name:float}
+    @keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+    @keyframes float{to{transform:translateY(110vh) scale(1.2);opacity:.2}}
+
+    .card{
+      position:relative;z-index:2;width:min(92vw,560px);min-height:560px;
+      background:rgba(255,255,255,.78);backdrop-filter:blur(10px);
+      border:3px solid rgba(255,143,179,.35);border-radius:32px;
+      box-shadow:0 20px 60px rgba(255,78,130,.25);
+      padding:28px;text-align:center;display:flex;flex-direction:column;
+      justify-content:center;align-items:center;
+    }
+    .badge{background:#ff6f9f;color:white;padding:8px 18px;border-radius:999px;font-weight:700;margin-bottom:12px;box-shadow:0 8px 18px rgba(255,111,159,.3)}
+    h1{font-size:34px;margin:10px 0;color:#d6336c;text-shadow:1px 1px #fff}
+    p{font-size:18px;line-height:1.6;margin:10px 0}
+    .teddy{font-size:118px;filter:drop-shadow(0 12px 18px rgba(0,0,0,.14));animation:bounce 1.5s infinite}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    .question-box{background:#fff0f6;border:2px dashed #ff8fab;border-radius:22px;padding:18px;margin:18px 0;width:100%}
+    .btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+    button,a.button{
+      border:none;text-decoration:none;cursor:pointer;border-radius:999px;padding:13px 24px;
+      background:linear-gradient(135deg,#ff4f87,#ff8fab);color:white;font-size:16px;font-weight:700;
+      box-shadow:0 10px 20px rgba(255,79,135,.28);transition:.25s;
+    }
+    button:hover,a.button:hover{transform:translateY(-3px) scale(1.03)}
+    .no{background:linear-gradient(135deg,#555,#999)}
+    .msg{
+      max-height:390px;overflow:auto;text-align:left;background:#fff8fb;border-radius:22px;
+      padding:20px;border:2px solid #ffd1df;box-shadow:inset 0 0 16px rgba(255,143,179,.14);
+      font-size:15.5px;line-height:1.65;white-space:pre-line;
+    }
+    .final h1{font-size:30px}.hidden{display:none}
+    .mini{font-size:14px;color:#8b3a55;margin-top:10px}
+  </style>
+</head>
+<body>
+  <div class="flowers" id="flowers"></div>
+  <div class="hearts" id="hearts"></div>
+
+  <div class="card" id="card">
+    <div class="badge">Special Surprise Loading... 💌</div>
+    <div class="teddy">🧸</div>
+    <h1>Are you ready, Nini? ❤️</h1>
+    <div class="question-box">
+      <p id="question">Sach sach batana… ready ho ya nahi? 😌</p>
+      <p class="mini" id="warning">Warning: Next click karne ke baad emotions aa sakte hain 🥹</p>
+    </div>
+    <div class="btns">
+      <button onclick="nextStep()" id="nextBtn">Next 💖</button>
+      <button class="no" onclick="runAway(this)">Don't click 😭</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      "Are you really ready? Kyunki yeh normal birthday wish nahi hai 😌❤️",
+      "Pakka? Ek baar soch lo... thoda emotional ho sakta hai 🥹",
+      "Abhi bhi time hai, back ja sakti ho... but jaana mat 😭❤️",
+      "Okay okay, last warning... smile ready rakho 😏✨",
+      "Bas ab final surprise... meri Nini ke liye 💌"
+    ];
+    let step = 0;
+    const googleVideoLink = "https://drive.google.com/file/d/1t0UryDZ5hXot8P4TaFU74A-ejQH2SANI/view?usp=drive_link"; // yaha apna Google Drive / video link paste kar dena
+
+    function nextStep(){
+      step++;
+      if(step < questions.length){
+        document.getElementById('question').innerText = questions[step];
+        document.getElementById('warning').innerText = step === 3 ? "Ab sach mein last wala hai 😂" : "Don't click next... okay click kar hi do 😭";
+      } else showFinal();
+    }
+
+    function runAway(btn){
+      const x = Math.random()*220 - 110;
+      const y = Math.random()*120 - 60;
+      btn.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random()*20-10}deg)`;
+      btn.innerText = "Acha sorry click karlo 😂";
+    }
+
+    function showFinal(){
+      document.getElementById('card').classList.add('final');
+      document.getElementById('card').innerHTML = `
+        <div class="badge">Happy Birthday meri Nini 🎂❤️</div>
+        <h1>For You 🫶</h1>
+        <div class="msg">Nini ❤️
+
+Happy Birthdayyy 🥹🎂
+
+Sach bolu… aaj ka din mere liye bhi utna hi special hai jitna aapke liye, shayad thoda zyada hi ❤️
+Kyuki aaj woh din hai jab meri life mein sabse important insaan aaya tha 🫶
+
+Aap mere liye sirf “someone special” nahi ho… aap meri aadat ho, meri peace ho, aur woh insaan ho jiske saath rehke sab kuch automatically theek lagne lagta hai.
+
+Kabhi kabhi sochta hoon ki yeh sab itna natural kaise hai… bina effort ke itni understanding, bina bole itna samajh jaana. Shayad isi ko real connection bolte hain, aur mujhe woh aapke saath mila ❤️
+
+Aur ek baat jo main pakka maanta hoon — yeh bond chahe naya ho, but I bet yeh sabse strong hai, sabse alag hai. Aur mujhe pura yakeen hai ki aage bhi hum aise hi saath rahenge… har phase mein, har mood mein 🫂
+
+Aapka har mood, har version… sab apna sa lagta hai. Chahe aap hasi ho, gussa ho, ya overthinking mode mein ho 😂… main har situation mein wahi rehne wala hoon — aapke saath.
+
+Thank you meri life ka part banne ke liye, aur usko itna meaningful banane ke liye. Aapke saath sab kuch thoda aur acha lagta hai, thoda aur complete 🫶
+
+Bas ek hi dua hai — aap hamesha smile karte raho, tension kam lo, aur life aapko har woh cheez de jo aap deserve karte ho… aur haan, thodi extra bhi 😌✨
+
+Aur yaad rakhna… aaj sirf birthday nahi hai, aaj woh din hai jab meri Nini duniya mein aayi thi ❤️
+
+Happy Birthday once again… always with you, no matter what 🫶
+ 🫶</div>
+        <div class="btns">
+          <a class="button" href="${googleVideoLink}" target="_blank" style="font-size:18px;padding:16px 28px;background:linear-gradient(135deg,#ff2e63,#ff8fab);box-shadow:0 12px 25px rgba(255,46,99,.4)">
+            Ek aur surprise chahiye? 😏❤️<br>Haan toh yahan click karo 🎁
+          </a>
+        </div>
+      `;
+    }
+
+    function createFloating(){
+      const flowers = ['🌸','🌹','🌷','💐','🌺'];
+      const hearts = ['❤️','💖','💕','💗','💘'];
+      for(let i=0;i<28;i++){
+        const p=document.createElement('div');
+        p.className='petal';p.innerText=flowers[Math.floor(Math.random()*flowers.length)];
+        p.style.left=Math.random()*100+'vw';p.style.animationDuration=5+Math.random()*7+'s';p.style.animationDelay=Math.random()*5+'s';
+        document.getElementById('flowers').appendChild(p);
+      }
+      for(let i=0;i<22;i++){
+        const h=document.createElement('div');
+        h.className='heart';h.innerText=hearts[Math.floor(Math.random()*hearts.length)];
+        h.style.left=Math.random()*100+'vw';h.style.animationDuration=6+Math.random()*8+'s';h.style.animationDelay=Math.random()*6+'s';
+        document.getElementById('hearts').appendChild(h);
+      }
+    }
+    createFloating();
+  </script>
+</body>
+</html>
